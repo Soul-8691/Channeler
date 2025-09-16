@@ -8,7 +8,6 @@ import os
 # -----------------------
 STRING_BASE = 0x15BF724
 NUM_STRINGS = 2098
-FREE_SPACE_START = 0x161C2E3
 
 POINTER_TABLES = {
     "Card Names": 0x15BB594,
@@ -57,7 +56,7 @@ def read_strings(filename, pointer_offset):
 
 
 def find_free_space(f, size):
-    f.seek(FREE_SPACE_START)
+    f.seek(STRING_BASE)
     free_count = 0
     start = None
     while True:
@@ -69,7 +68,7 @@ def find_free_space(f, size):
                 start = f.tell() - 1
             free_count += 1
             if free_count >= size:
-                return start
+                return start + 1
         else:
             start = None
             free_count = 0
