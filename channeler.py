@@ -15,8 +15,8 @@ POINTER_TABLES = {
     "Card Descriptions": 0x15BD65C,
 }
 
-SCRIPTS_TABLE_OFFSET = 0x00AB6DC
-SCRIPTS_TABLE_END = 0x00AF6E8
+SCRIPTS_TABLE_OFFSET = 0x004B2F0
+SCRIPTS_TABLE_END = 0x004C6AB
 
 current_file = None
 current_pointer_offset = None
@@ -107,15 +107,24 @@ def edit_string(filename, pointer_offset, index, new_text):
             f.seek(pointer_offset + index * 4)
             f.write(struct.pack("<I", new_rel))
 
+# Load card names (not numeric IDs)
+def load_card_name_map(txt_filename):
+    """
+    Returns a list of card names; first entry corresponds to 4007, etc.
+    """
+    with open(txt_filename, "r", encoding="utf-8") as f:
+        names = [line.strip() for line in f if line.strip()]
+    return names
 
 # -----------------------
 # Scripts parsing
 # -----------------------
-def read_scripts_table(filename, table_offset, table_end):
+def read_scripts_table(filename, table_offset, table_end, card_name_map):
     """
     Parse scripts from table_offset up to table_end.
     Multiple 4-byte card IDs can appear back-to-back, sharing the same script bytes.
-    Only card IDs >= 4007 and last 2 bytes != 0x0000 are included.
+    Only card IDs >= 4007 <= 6655 are included.
+    Maps each card ID to a name from card_name_map (first entry corresponds to 4007).
     """
     entries = []
     with open(filename, "rb") as f:
@@ -129,8 +138,8 @@ def read_scripts_table(filename, table_offset, table_end):
             card_id = struct.unpack("<I", header)[0]
 
             # Skip invalid IDs
-            if card_id < 4007:
-                pos += 4
+            if card_id < 4007 or card_id > 6655:
+                pos += 2
                 continue
 
             # Read script body until 0xE0
@@ -146,38 +155,46 @@ def read_scripts_table(filename, table_offset, table_end):
                 if val == 0xE0:
                     break
 
-            # Check for multiple back-to-back card IDs
+            # Collect all consecutive card IDs sharing this body
+            # Collect all consecutive card IDs sharing this body
             ids_for_body = []
             temp_pos = pos
-            while temp_pos + 4 <= table_end:
+            while temp_pos + 4 <= body_start:
                 f.seek(temp_pos)
                 peek = f.read(4)
                 if len(peek) < 4:
                     break
                 peek_id = struct.unpack("<I", peek)[0]
-                if peek_id < 4007 or (peek_id & 0xFFFF) == 0x0000:
+                if peek_id < 4007:
                     break
-                ids_for_body.append(peek_id & 0xFFFF)
+                # Map to text file name
+                name_idx = peek_id - 4007
+                if name_idx >= len(card_name_map):
+                    mapped_name = f"<Unknown {peek_id}>"
+                else:
+                    mapped_name = card_name_map[name_idx]
+                ids_for_body.append(mapped_name)
                 temp_pos += 4
                 if temp_pos >= body_start:
                     break
 
-            for cid16 in ids_for_body:
+            # Add an entry for each mapped name pointing to the same body
+            for mapped_name in ids_for_body:
                 entries.append({
                     'index': index,
                     'card_id': card_id,
-                    'id16': cid16,
+                    'name': mapped_name,
                     'bytes': body,
                     'start': pos
                 })
                 index += 1
 
+            # Advance pos past the body
             pos = body_start + len(body)
             if pos >= table_end:
                 break
 
     return entries
-
 
 # -----------------------
 # Tkinter UI Functions
@@ -224,7 +241,7 @@ def open_file():
         current_pointer_offset = None
         current_table_name = "Scripts"
         cached_names = None
-        scripts_data = read_scripts_table(filename, SCRIPTS_TABLE_OFFSET, SCRIPTS_TABLE_END)
+        scripts_data = read_scripts_table(filename, SCRIPTS_TABLE_OFFSET, SCRIPTS_TABLE_END, load_card_name_map('Card_IDs.txt'))
         left_listbox.config(selectmode=tk.EXTENDED)
         refresh_scripts_listbox(scripts_data)
         right_listbox.delete(0, tk.END)
@@ -251,7 +268,8 @@ def refresh_descriptions_in_listbox(descriptions, names):
 def refresh_scripts_listbox(scripts):
     left_listbox.delete(0, tk.END)
     for i, entry in enumerate(scripts):
-        left_listbox.insert(tk.END, f"{i:04d}: ID16 0x{entry['id16']:04X} ({entry['id16']}) @0x{entry['start']:06X}")
+        # When populating the left listbox for scripts:
+        left_listbox.insert(tk.END, f"{i:04d}: {entry['name']} @0x{entry['start']:06X}")
 
 
 def on_left_select(event):
@@ -262,7 +280,7 @@ def on_left_select(event):
             return
         for idx in sel:
             entry = scripts_data[idx]
-            header = f"Script #{entry['index']} - ID16 0x{entry['id16']:04X} @0x{entry['start']:06X}"
+            header = f"Script #{entry['index']} - {entry['name']} @0x{entry['start']:06X}"
             right_listbox.insert(tk.END, header)
             right_listbox.insert(tk.END, "-" * len(header))
             for i, b in enumerate(entry['bytes']):
