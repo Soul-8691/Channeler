@@ -3,17 +3,29 @@ from tkinter import filedialog, simpledialog, messagebox
 import struct
 
 # Constants
-POINTER_OFFSET = 0x15BB594
 STRING_BASE = 0x15BF724
 NUM_STRINGS = 2098
 FREE_SPACE_START = 0x161C2E3
 
-# Read all strings
-def read_strings(filename):
+POINTER_TABLES = {
+    "Card Names": 0x15BB594,
+    "Card Descriptions": 0x15BD65C,
+}
+
+current_file = None
+current_pointer_offset = None
+current_table_name = None
+
+
+# ============================
+#  Binary Helpers
+# ============================
+
+def read_strings(filename, pointer_offset):
     strings = []
     with open(filename, "rb") as f:
         # Get relative offsets
-        f.seek(POINTER_OFFSET)
+        f.seek(pointer_offset)
         relative_offsets = [
             struct.unpack("<I", f.read(4))[0]
             for _ in range(NUM_STRINGS)
@@ -33,8 +45,9 @@ def read_strings(filename):
             strings.append("".join(chars))
     return strings
 
-# Find free space region of required size (including terminating 00)
+
 def find_free_space(f, size):
+    """Find a run of 00 bytes of at least size starting from FREE_SPACE_START"""
     f.seek(FREE_SPACE_START)
     free_count = 0
     start = None
@@ -54,11 +67,11 @@ def find_free_space(f, size):
             free_count = 0
     return None
 
-# Edit string at pointer index
-def edit_string(filename, index, new_text):
+
+def edit_string(filename, pointer_offset, index, new_text):
     with open(filename, "r+b") as f:
         # Read pointer
-        f.seek(POINTER_OFFSET + index * 4)
+        f.seek(pointer_offset + index * 4)
         rel = struct.unpack("<I", f.read(4))[0]
         abs_offset = STRING_BASE + rel
 
@@ -74,49 +87,81 @@ def edit_string(filename, index, new_text):
         new_bytes = new_text.encode("ascii") + b"\x00"
 
         if len(new_bytes) <= len(old_bytes) + 1:
-            # Case 1: new string fits in old space (pad with 00s)
+            # Case 1: fits in place, pad with 00s
             padded = new_bytes + b"\x00" * (len(old_bytes) + 1 - len(new_bytes))
             f.seek(abs_offset)
             f.write(padded)
 
         else:
-            # Case 2: need free space
+            # Case 2: move to free space
             free_offset = find_free_space(f, len(new_bytes))
             if free_offset is None:
                 raise RuntimeError("No free space available")
 
-            # Write into free space
+            # Write new string
             f.seek(free_offset)
             f.write(new_bytes)
 
             # Update pointer
             new_rel = free_offset - STRING_BASE
-            f.seek(POINTER_OFFSET + index * 4)
+            f.seek(pointer_offset + index * 4)
             f.write(struct.pack("<I", new_rel))
 
-# Tkinter UI
+
+# ============================
+#  Tkinter GUI
+# ============================
+
 def open_file():
-    global current_file
+    global current_file, current_pointer_offset, current_table_name
+
     filename = filedialog.askopenfilename(
         title="Open Binary File",
         filetypes=[("Binary files", "*.*")]
     )
     if not filename:
         return
+
+    # Prompt for which pointer table to use
+    choice = simpledialog.askstring(
+        "Select Table",
+        "Type 'names' for Card Names or 'descriptions' for Card Descriptions:"
+    )
+    if not choice:
+        return
+
+    choice = choice.lower()
+    if choice.startswith("name"):
+        pointer_offset = POINTER_TABLES["Card Names"]
+        table_name = "Card Names"
+    elif choice.startswith("desc"):
+        pointer_offset = POINTER_TABLES["Card Descriptions"]
+        table_name = "Card Descriptions"
+    else:
+        messagebox.showwarning("Invalid Choice", "Please enter 'names' or 'descriptions'.")
+        return
+
     try:
-        strings = read_strings(filename)
+        strings = read_strings(filename, pointer_offset)
     except Exception as e:
         messagebox.showerror("Error", str(e))
         return
 
     current_file = filename
+    current_pointer_offset = pointer_offset
+    current_table_name = table_name
+
     listbox.delete(0, tk.END)
     for s in strings:
         listbox.insert(tk.END, s)
+    root.title(f"Binary String Editor - {table_name}")
+
 
 def edit_selected():
-    if current_file is None:
-        messagebox.showwarning("No file", "Please open a file first.")
+    global current_file, current_pointer_offset
+
+    if current_file is None or current_pointer_offset is None:
+        messagebox.showwarning("No file", "Please open a file and select a table first.")
         return
 
     selection = listbox.curselection()
@@ -132,9 +177,9 @@ def edit_selected():
         return  # Cancel
 
     try:
-        edit_string(current_file, index, new_text)
+        edit_string(current_file, current_pointer_offset, index, new_text)
         # Refresh display
-        strings = read_strings(current_file)
+        strings = read_strings(current_file, current_pointer_offset)
         listbox.delete(0, tk.END)
         for s in strings:
             listbox.insert(tk.END, s)
@@ -142,6 +187,7 @@ def edit_selected():
         listbox.see(index)
     except Exception as e:
         messagebox.showerror("Error", str(e))
+
 
 # Main app
 root = tk.Tk()
@@ -168,7 +214,5 @@ file_menu.add_command(label="Exit", command=root.quit)
 edit_menu = tk.Menu(menu, tearoff=0)
 menu.add_cascade(label="Edit", menu=edit_menu)
 edit_menu.add_command(label="Edit Selected...", command=edit_selected)
-
-current_file = None
 
 root.mainloop()
