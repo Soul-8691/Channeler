@@ -115,6 +115,8 @@ def load_card_name_map(txt_filename):
         names = [line.strip() for line in f if line.strip()]
     return names
 
+card_name_map = load_card_name_map('Card_IDs.txt')
+
 # -----------------------
 # Scripts parsing
 # -----------------------
@@ -138,7 +140,7 @@ def read_scripts_table(filename, table_offset, table_end, card_name_map):
 
             # Skip invalid IDs
             if card_id < 4007 or card_id > 6655:
-                pos += 2
+                pos += 1
                 continue
 
             # Read script body until 0xE0
@@ -207,7 +209,7 @@ def open_file():
 
     choice = simpledialog.askstring(
         "Select Mode",
-        "Type 'names', 'descriptions', or 'scripts':"
+        "Type 'names', 'descriptions', 'scripts1', 'scripts2', or 'scripts3':"
     )
     if not choice:
         return
@@ -215,38 +217,34 @@ def open_file():
 
     if choice.startswith("name"):
         pointer_offset = POINTER_TABLES["Card Names"]
-        current_file = filename
-        current_pointer_offset = pointer_offset
         current_table_name = "Card Names"
         cached_names = None
-        scripts_data = None
         strings = read_strings(filename, pointer_offset)
-        left_listbox.config(selectmode=tk.SINGLE)
         refresh_strings_in_listbox(strings)
 
     elif choice.startswith("desc"):
         pointer_offset = POINTER_TABLES["Card Descriptions"]
-        current_file = filename
-        current_pointer_offset = pointer_offset
         current_table_name = "Card Descriptions"
         cached_names = read_strings(filename, POINTER_TABLES["Card Names"])
-        scripts_data = None
         strings = read_strings(filename, pointer_offset)
-        left_listbox.config(selectmode=tk.SINGLE)
         refresh_descriptions_in_listbox(strings, cached_names)
 
-    elif choice.startswith("script"):
-        current_file = filename
-        current_pointer_offset = None
+    elif choice in ("scripts1", "scripts2", "scripts3"):
         current_table_name = "Scripts"
         cached_names = None
-        scripts_data = read_scripts_table(filename, SCRIPTS_TABLE_OFFSET, SCRIPTS_TABLE_END, load_card_name_map('Card_IDs.txt'))
-        left_listbox.config(selectmode=tk.EXTENDED)
+        # Map table names to offsets
+        scripts_tables = {
+            "scripts1": (0x4AE60, 0x4B261),
+            "scripts2": (0x4B2F0, 0x4C6AB),
+            "scripts3": (0x522BC, 0x525B9),
+        }
+        start_offset, end_offset = scripts_tables[choice]
+        scripts_data = read_scripts_table(filename, start_offset, end_offset, card_name_map)
         refresh_scripts_listbox(scripts_data)
         right_listbox.delete(0, tk.END)
 
     else:
-        messagebox.showwarning("Invalid Choice", "Enter 'names', 'descriptions', or 'scripts'.")
+        messagebox.showwarning("Invalid Choice", "Enter 'names', 'descriptions', 'scripts1', 'scripts2', or 'scripts3'.")
         return
 
     root.title(f"Binary String Editor - {current_table_name}")
