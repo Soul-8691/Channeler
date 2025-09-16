@@ -7,11 +7,11 @@ import os
 # Constants / Globals
 # -----------------------
 STRING_BASE = 0x15BF724
-NUM_STRINGS = 2098
+NUM_STRINGS = 2200
 
 POINTER_TABLES = {
-    "Card Names": 0x15BB594,
-    "Card Descriptions": 0x15BD65C,
+    "Card Names": 0x1630540,
+    "Card Descriptions": 0x1632800,
 }
 
 SCRIPTS_TABLE_OFFSET = 0x004B2F0
@@ -302,9 +302,6 @@ def on_left_select(event):
 
 def edit_selected():
     global current_file, current_pointer_offset
-    if current_file is None or current_table_name is None:
-        messagebox.showwarning("No file", "Open a file first.")
-        return
     if current_table_name == "Scripts":
         messagebox.showinfo("Scripts mode", "Editing scripts is not supported here.")
         return
