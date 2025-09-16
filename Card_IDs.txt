@@ -652,19 +652,19 @@ Kunai with Chain
 Magical Labyrinth
 Warrior Elimination (None)
 Salamandra
- (None)
+None
 Eternal Rest
 Megamorph
 Metalmorph
- (None)
+None
 Acid Rain (None)
 Crush Card
 Eradicating Aerosol (None)
 Breath of Light (None)
 Eternal Drought (None)
- (None)
- (None)
- (None)
+None
+None
+None
 Bright Castle
 Shadow Spell
 Black Luster Ritual
@@ -672,30 +672,30 @@ Zera Ritual
 Harpie's Feather Duster
 War-Lion Ritual
 Beastly Mirror Ritual
- (None)
+None
 Commencement Dance
 Hamburger Recipe
- (None)
+None
 Novox's Prayer
- (None)
+None
 House of Adhesive Tape
 Eatgaboon (None)
- (None)
- (None)
+None
+None
 Acid Trap Hole
 Widespread Ruin
 Goblin Fan (None)
 Bad Reaction to Simochi
 Reverse Trap
 Fake Trap (None)
- (None)
+None
 Turtle Oath
- (None)
+None
 Resurrection of Chakra
- (None)
+None
 Javelin Beetle Pact
 Garma Sword Oath
- (None)
+None
 Revival of Dokurorider
 Fortress Whale's Oath
 Performance of Sword
@@ -712,16 +712,16 @@ Mikazukinoyaiba
 Meteor Dragon
 Meteor B. Dragon
 Firewing Pegasus
- (None)
+None
 Garma Sword
 Javelin Beetle
 Fortress Whale
 Dokurorider
- (None)
+None
 Dark Magic Ritual
 Magician of Black Chaos
 Slot Machine
- (None)
+None
 Red Archery Girl
 Ryu-Ran
 Manga Ryu-Ran
@@ -756,7 +756,7 @@ The Fiend Megacyber
 Reflect Bounder
 Beta The Magnet Warrior
 Big Shield Gardna
- (None)
+None
 Dark Magician Girl
 Alligator's Sword
 Insect Queen
@@ -770,12 +770,12 @@ Drill Bug
 Deepsea Warrior
 Bite Shoes (None)
 Spikebot (None)
- (None)
+None
 Satellite Cannon
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
 The Last Warrior from Another Planet
 Dunames Dark Witch
 Garnecia Elefantis
@@ -784,21 +784,21 @@ Beast of Talwar
 Cyber-Tech Alligator
 Talons of Shurilane (None)
 Gamma The Magnet Warrior
- (None)
+None
 Time Machine
 Copycat
- (None)
- (None)
+None
+None
 Toon World
 Gorgon's Eye
 Mimicat (None)
- (None)
+None
 Black Illusion Ritual
 Brain Control
 Negate Attack
 Multiply
 7 Completed (None)
- (None)
+None
 Lightforce Sword
 Dragon Nails (None)
 The Flute of Summoning Dragon
@@ -815,16 +815,16 @@ Roulette Spider (None)
 Card Destruction
 Dark Renewal (None)
 Tragedy
- (None)
- (None)
+None
+None
 Mystical Refpanel (None)
- (None)
+None
 Ectoplasmer
- (None)
+None
 Dark Magic Curtain
 Anti-Magic Arrows (None)
 Insect Barrier
- (None)
+None
 Magic-Arm Shield
 Fissure
 Trap Hole
@@ -950,7 +950,7 @@ Major Riot (None)
 Ceasefire
 Light of Intervention
 Respect Play
- (None)
+None
 Imperial Order
 Skull Invitation
 Magical Hats
@@ -985,10 +985,10 @@ Solomon's Lawbook
 Earthshaker (None)
 Enchanted Javelin
 Mirror Wall
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
 Obelisk the Tormentor (None)
 Slifer the Sky Dragon (None)
 The Winged Dragon of Ra (None)
@@ -1004,8 +1004,8 @@ Riryoku
 Sword of Dragon's Soul
 Seal of the Ancients (None)
 The Legendary Exodia Incarnate (None)
- (None)
- (None)
+None
+None
 Luminous Soldier
 King Tiger Wanghu
 Command Knight
@@ -1030,7 +1030,7 @@ Jowls of Dark Demise
 Souleater
 Slate Warrior
 Shapesnatch (None)
- (None)
+None
 Electromagnetic Bagworm (None)
 Timeater
 Mucus Yolk
@@ -1038,49 +1038,49 @@ Servant of Catabolism
 Rigras Leever
 Moisture Creature
 Boneheimer
- (None)
+None
 Flame Dancer
- (None)
- (None)
+None
+None
 Soul Scissors (None)
- (None)
+None
 Sonic Jammer
- (None)
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
+None
 Gearfried the Iron Knight
 Humanoid Slime
 Worm Drake
 Humanoid Worm Drake
 Revival Jam
- (None)
+None
 Flying Fish
 Amphibian Beast
 Rocket Warrior
- (None)
+None
 The Legendary Fisherman
- (None)
- (None)
+None
+None
 Robolady
 Roboyarou
- (None)
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
+None
 Lightning Conger
- (None)
- (None)
- (None)
+None
+None
+None
 Light Law Medium (None)
- (None)
- (None)
+None
+None
 Spherous Lady
- (None)
- (None)
- (None)
+None
+None
+None
 Shining Abyss
 Archfiend of Gilfer
 Gadget Soldier
@@ -1091,12 +1091,12 @@ Nuvia the Wicked
 Masked Beast Des Gardius (None)
 The Mask of Remnants (None)
 Soul Exchange
- (None)
+None
 Chosen One (None)
 Mask of Weakness
 Curse of the Masked Beast
 Mask of Dispel
- (None)
+None
 Mask of Restrict
 Mask of the Accursed
 Mask of Brutality
@@ -1108,7 +1108,7 @@ Fairy Box
 Torrential Tribute
 Insect Monster Token
 Multiplication of Ants
- (None)
+None
 De-Fusion
 Jam Breeding Machine
 Nightmare's Steelcage
@@ -1146,21 +1146,21 @@ Rain of Mercy
 Monster Recovery
 Type Zero Magic Crusher
 Army Ant Token
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
+None
+None
 Yellow Luster Shield
 Creature Swap
- (None)
+None
 Spring of Rebirth (None)
 Dark Magician
 Thousand Knives
- (None)
+None
 Mystic Box
- (None)
+None
 Ground Collapse
 Dizzy Tiger (None)
 Dizzy Angel (None)
@@ -1182,8 +1182,8 @@ Dark Arena (None)
 Alchemic Kettle - Chaos Distill (None)
 Philosopher's Stone - Sabatier (GX02-TF06) (None)
 Ayer's Rock Sunrise (GX02-TF06) (None)
- (None)
- (None)
+None
+None
 Lady Panther (None)
 The Unfriendly Amazon (None)
 Amazon Archer
@@ -1206,7 +1206,7 @@ Scroll of Bewitchment
 United We Stand
 Mage Power
 Offerings to the Doomed
- (None)
+None
 Meteor of Destruction
 Lightning Vortex
 Exchange
@@ -1219,20 +1219,20 @@ Destiny Board
 The Dark Door
 Earthbound Spirit
 Dark Spirit of the Silent
- (None)
+None
 The Earl of Demise
 Dark Sage
 Cathedral of Nobles
 Judgment of Anubis
- (None)
+None
 Embodiment of Apophis
- (None)
+None
 Foolish Burial
 Makiu
 Ancient Lamp
 Cyber Harpie Lady
- (None)
- (None)
+None
+None
 Mystical Beast Serket
 Swift Gaia the Fierce Knight
 Obnoxious Celtic Guard
@@ -1273,19 +1273,19 @@ Miracle Dig
 Dragonic Attack (None)
 Spirit Elimination (None)
 Vengeful Bog Spirit
- (None)
- (None)
+None
+None
 Amazoness Swords Woman
 Makyura the Destructor
 Amazoness Archers
 Rope of Life
- (None)
+None
 Flying Elephant (None)
 Enchanted Arrow
 Amazoness Chain Master
 Viser Des
- (None)
- (None)
+None
+None
 Amazoness Fighter
 Amazoness Spellcaster (None)
 Card of Last Will (None)
@@ -1355,7 +1355,7 @@ Reversal of Graves
 Kelbek
 Muko (None)
 Zolga
- (None)
+None
 Blast Held by a Tribute
 Agido
 Silent Fiend
@@ -1398,7 +1398,7 @@ Nutrient Z
 Drop Off
 Fiend Comedian
 Last Turn
- (None)
+None
 Des Volstgalph
 Kaiser Sea Horse
 Vampire Lord
@@ -1449,21 +1449,21 @@ Wicked Token
 Sheep Token (orange) (None)
 Sheep Token (pink) (None)
 Sheep Token (yellow) (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
 Toon Defense
 Toon Table of Contents
 Toon Masked Sorcerer
@@ -1486,12 +1486,12 @@ Gil Garth
 Coffin Seller (None)
 Calamity of the Wicked
 Question (None)
- (None)
+None
 Lava Golem
 Monster Relief
 Machine Duplication
 Dark Jeroid
- (None)
+None
 Master of Dragon Soldier
 F.G.D.
 Queen's Knight
@@ -1554,17 +1554,17 @@ Jack's Knight
 Interdimensional Matter Transporter
 Goblin Zombie
 Drillago
- (None)
+None
 Lekunga
 Poisonous Snake Token
 Lekunga Token
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
+None
+None
+None
 Cloning (None)
 Cost Down
 Card of Demise (None)
@@ -1624,13 +1624,13 @@ Double Spell (None)
 Spell Absorption
 Diffusion Wave-Motion
 Fiend's Sanctuary
- (None)
+None
 Clone Token (None)
 Wicked Plant Token
 Juragedo (None)
 Left Arm Offering (None)
 Dark Spell Regeneration (None)
- (None)
+None
 Mirage Token (None)
 Great Angus
 Aitsu
@@ -1681,11 +1681,11 @@ Metal Reflect Slime
 Bowganian
 Excavation of Mage Stones
 Metal Fiend Token
- (None)
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
+None
 Granadora
 Different Dimension Dragon (None)
 Shinato, King of a Higher Plane
@@ -1703,7 +1703,7 @@ Guardian Grarl
 Guardian Baou
 Guardian Kay'est
 Guardian Tryce
- (None)
+None
 Gyaku-Gire Panda
 Blindly Loyal Goblin
 Despair from the Dark
@@ -1733,16 +1733,16 @@ Ojama Trio
 Arsenal Robber
 Skill Drain
 Really Eternal Rest
- (None)
+None
 Soul Taker
 Ojama Token
 Ojama Token (yellow) (None)
 Ojama Token (black) (None)
- (None)
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
+None
 Magical Dimension
 Judgement of Pharaoh
 Friendship
@@ -1792,15 +1792,15 @@ Dice Re-Roll
 Spell Vanishing
 Sakuretsu Armor
 Ray of Hope
- (None)
- (None)
+None
+None
 Nightmare Penguin
 Perfect Machine King
- (None)
+None
 Giant Rex (None)
 Penguin Torpedo (None)
- (None)
- (None)
+None
+None
 Chiron the Mage
 Ojama Yellow
 Ojama Black
@@ -1852,16 +1852,16 @@ Zero Gravity
 Dark Mirror Force
 Energy Drain
 Chaos Emperor Dragon - Envoy of the End
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
+None
+None
+None
 Victory D.
 Magician's Valkyrie
- (None)
+None
 Giga Gagagigo
 Mad Dog of Darkness
 Neo Bug
@@ -1929,11 +1929,11 @@ Gora Turtle of Illusion (None)
 Skull Zoma
 Lamb Token
 Lamb Token (white) (None)
- (None)
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
+None
 Maximum Six
 Dangerous Machine TYPE-6
 Sixth Sense
@@ -1988,27 +1988,27 @@ Beckoning Light
 Draining Shield
 Armor Break
 Mazera DeVille
- (None)
- (None)
- (None)
+None
+None
+None
 Marshmallon
 Skull Descovery Knight
- (None)
+None
 Shield Crash
 Gemini Imps (None)
 Return Zombie
 Corpse of Yata-Garasu
 Marshmallon glasses
- (None)
- (None)
+None
+None
 Earthbound Spirit's Invitation
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
+None
+None
+None
 Mokey Mokey
 Gigobyte
 Kozaky
@@ -2065,14 +2065,14 @@ Labyrinth of Nightmare
 Soul Resurrection
 Order to Smash
 The End of Anubis
- (None)
+None
 Necroface (None)
 Crush D. Gandra
- (None)
+None
 Return from the Different Dimension
 Pyramid of Light
- (None)
- (None)
+None
+None
 Blue-Eyes Shining Dragon
 Familiar Knight
 Rare Metal Dragon
@@ -2082,7 +2082,7 @@ Andro Sphinx
 Sphinx Teleia
 Theinen the Great Sphinx
 Inferno Tempest
- (None)
+None
 Watapon
 Charcoal Inpachi
 Neo Aqua Madoor
@@ -2162,7 +2162,7 @@ Silent Magician LV4
 Magician's Circle
 Magician's Unite
 Silent Magician LV8
- (None)
+None
 Woodborg Inpachi
 Mighty Guard
 Bokoichi the Freightening Car
@@ -2171,7 +2171,7 @@ The Creator
 The Creator Incarnate
 Ultimate Insect LV3
 Mystic Swordsman LV6
- (None)
+None
 Heavy Mech Support Platform
 Element Magician
 Element Saurus
@@ -2219,9 +2219,9 @@ Pikeru's Circle of Enchantment
 Spell Purification
 Astral Barrier
 Covering Fire
- (None)
+None
 Castle Gate
- (None)
+None
 Owner's Seal
 Space Mambo
 Divine Dragon Ragnarok
@@ -2281,14 +2281,14 @@ Forced Ceasefire
 Curse of Vampire
 Union Attack
 Blood Sucker
- (None)
+None
 Overpowering Eye
 Red-Eyes Darkness Dragon
 Vampire Genesis
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
 Kaibaman
 Synthetic Seraphim Token (None)
 Double Dude Token (None)
@@ -2297,10 +2297,10 @@ Machina Soldier (None)
 Machina Defender (None)
 Machina Sniper (None)
 Intruder Alarm - Yellow Alert (None)
- (None)
+None
 Commander Covington (None)
 Machina Force (None)
- (None)
+None
 Elemental Hero Avian
 Elemental Hero Burstinatrix
 Elemental Hero Clayman
@@ -2360,20 +2360,20 @@ Spell-Stopping Statute
 Royal Surrender
 Lone Wolf (None)
 Infernal Flame Emperor
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
 Mutant Mindmaster (None)
 Holy Knight Ishzark
- (None)
+None
 Ocean Dragon Lord - Neo-Daedalus
- (None)
- (None)
- (None)
+None
+None
+None
 Green Baboon, Defender of the Forest (None)
- (None)
- (None)
+None
+None
 Cycroid
 Patroid
 Gyroid
@@ -2392,10 +2392,10 @@ Cyber End Dragon
 Power Bond
 Skyscraper
 Summon Priest
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
 Dark Dreadroute
 Winged Kuriboh LV10
 Transcendent Wings
@@ -2443,7 +2443,7 @@ Dimension Wall
 Prepare to Strike Back
 Triage
 Divine Evolution (None)
- (None)
+None
 Trap of Darkness (None)
 Alkana Knight Joker
 Arms Regeneration (None)
@@ -2451,13 +2451,13 @@ Gilford the Legend
 Warrior Lady of the Wasteland
 Divine Sword - Phoenix Blade
 Tyler the Great Warrior (None)
- (None)
+None
 Praying Mantis (None)
- (None)
- (None)
- (None)
+None
+None
+None
 Dreadscythe Harvester (None)
- (None)
+None
 Elemental Hero Shining Flare Wingman
 Level Modulation
 Ojamuscle
@@ -2539,21 +2539,21 @@ The Grave of Enkindling (None)
 Rancer Dragonute
 Mistobody
 Axe Dragonute
- (None)
- (None)
+None
+None
 White Horns D.
 Tellus the Little Angel (None)
- (None)
- (None)
- (None)
+None
+None
+None
 Dark Red Enchanter (None)
- (None)
- (None)
+None
+None
 Gorz the Emissary of Darkness (None)
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
 Uria, Lord of Searing Flames
 Hamon, Lord of Striking Thunder
 Raviel, Lord of Phantasms
@@ -2576,7 +2576,7 @@ Attack Reflector Unit
 Damage Condenser
 Treasure Map (None)
 Hero Spirit (None)
- (None)
+None
 Phantasmal Martyr Token
 Ancient Gear Cannon
 Proto-Cyber Dragon
@@ -2618,15 +2618,15 @@ Success Probability 0%
 Option Hunter
 Goblin Out of the Frying Pan
 Malfunction
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
+None
+None
+None
+None
+None
 The Flute of Summoning Kuriboh
 Option Token (None)
 Fluffy Token
@@ -2640,9 +2640,9 @@ Homonculus Gold
 The Ancient Sun Helios
 Helios Duo Megiste
 Helios Tris Megiste
- (None)
- (None)
- (None)
- (None)
+None
+None
+None
+None
 Elemental Hero Neos
 Dandylion
