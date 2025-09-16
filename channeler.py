@@ -5,7 +5,6 @@ import struct
 # Constants
 STRING_BASE = 0x15BF724
 NUM_STRINGS = 2098
-FREE_SPACE_START = 0x161C2E3
 
 POINTER_TABLES = {
     "Card Names": 0x15BB594,
@@ -47,8 +46,8 @@ def read_strings(filename, pointer_offset):
 
 
 def find_free_space(f, size):
-    """Find a run of 00 bytes of at least size starting from FREE_SPACE_START"""
-    f.seek(FREE_SPACE_START)
+    """Find a run of 00 bytes of at least size starting from STRING_BASE"""
+    f.seek(STRING_BASE)
     free_count = 0
     start = None
 
