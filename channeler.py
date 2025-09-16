@@ -14,6 +14,7 @@ POINTER_TABLES = {
 current_file = None
 current_pointer_offset = None
 current_table_name = None
+cached_names = None  # For labeling descriptions
 
 
 # ============================
@@ -23,7 +24,6 @@ current_table_name = None
 def read_strings(filename, pointer_offset):
     strings = []
     with open(filename, "rb") as f:
-        # Get relative offsets
         f.seek(pointer_offset)
         relative_offsets = [
             struct.unpack("<I", f.read(4))[0]
@@ -46,7 +46,6 @@ def read_strings(filename, pointer_offset):
 
 
 def find_free_space(f, size):
-    """Find a run of 00 bytes of at least size starting from STRING_BASE"""
     f.seek(STRING_BASE)
     free_count = 0
     start = None
@@ -69,12 +68,10 @@ def find_free_space(f, size):
 
 def edit_string(filename, pointer_offset, index, new_text):
     with open(filename, "r+b") as f:
-        # Read pointer
         f.seek(pointer_offset + index * 4)
         rel = struct.unpack("<I", f.read(4))[0]
         abs_offset = STRING_BASE + rel
 
-        # Read old string
         f.seek(abs_offset)
         old_bytes = bytearray()
         while True:
@@ -86,22 +83,15 @@ def edit_string(filename, pointer_offset, index, new_text):
         new_bytes = new_text.encode("ascii") + b"\x00"
 
         if len(new_bytes) <= len(old_bytes) + 1:
-            # Case 1: fits in place, pad with 00s
             padded = new_bytes + b"\x00" * (len(old_bytes) + 1 - len(new_bytes))
             f.seek(abs_offset)
             f.write(padded)
-
         else:
-            # Case 2: move to free space
             free_offset = find_free_space(f, len(new_bytes))
             if free_offset is None:
                 raise RuntimeError("No free space available")
-
-            # Write new string
             f.seek(free_offset)
             f.write(new_bytes)
-
-            # Update pointer
             new_rel = free_offset - STRING_BASE
             f.seek(pointer_offset + index * 4)
             f.write(struct.pack("<I", new_rel))
@@ -112,7 +102,7 @@ def edit_string(filename, pointer_offset, index, new_text):
 # ============================
 
 def open_file():
-    global current_file, current_pointer_offset, current_table_name
+    global current_file, current_pointer_offset, current_table_name, cached_names
 
     filename = filedialog.askopenfilename(
         title="Open Binary File",
@@ -121,7 +111,6 @@ def open_file():
     if not filename:
         return
 
-    # Prompt for which pointer table to use
     choice = simpledialog.askstring(
         "Select Table",
         "Type 'names' for Card Names or 'descriptions' for Card Descriptions:"
@@ -150,10 +139,24 @@ def open_file():
     current_pointer_offset = pointer_offset
     current_table_name = table_name
 
-    listbox.delete(0, tk.END)
-    for s in strings:
-        listbox.insert(tk.END, s)
+    # Preload card names if we’re in descriptions mode
+    if table_name == "Card Descriptions":
+        cached_names = read_strings(filename, POINTER_TABLES["Card Names"])
+    else:
+        cached_names = None
+
+    refresh_listbox(strings)
     root.title(f"Binary String Editor - {table_name}")
+
+
+def refresh_listbox(strings):
+    listbox.delete(0, tk.END)
+    if current_table_name == "Card Descriptions" and cached_names:
+        for name, desc in zip(cached_names, strings):
+            listbox.insert(tk.END, f"{name} – {desc}")
+    else:
+        for s in strings:
+            listbox.insert(tk.END, s)
 
 
 def edit_selected():
@@ -169,19 +172,20 @@ def edit_selected():
         return
 
     index = selection[0]
-    old_text = listbox.get(index)
+    # Use only the actual string value for editing
+    if current_table_name == "Card Descriptions" and cached_names:
+        old_text = listbox.get(index).split(" – ", 1)[1]
+    else:
+        old_text = listbox.get(index)
 
     new_text = simpledialog.askstring("Edit String", f"Edit string #{index}:", initialvalue=old_text)
     if new_text is None:
-        return  # Cancel
+        return
 
     try:
         edit_string(current_file, current_pointer_offset, index, new_text)
-        # Refresh display
         strings = read_strings(current_file, current_pointer_offset)
-        listbox.delete(0, tk.END)
-        for s in strings:
-            listbox.insert(tk.END, s)
+        refresh_listbox(strings)
         listbox.selection_set(index)
         listbox.see(index)
     except Exception as e:
@@ -196,7 +200,7 @@ frame = tk.Frame(root)
 frame.pack(fill=tk.BOTH, expand=True)
 
 scrollbar = tk.Scrollbar(frame, orient=tk.VERTICAL)
-listbox = tk.Listbox(frame, selectmode=tk.SINGLE, yscrollcommand=scrollbar.set, width=80, height=30)
+listbox = tk.Listbox(frame, selectmode=tk.SINGLE, yscrollcommand=scrollbar.set, width=100, height=30)
 scrollbar.config(command=listbox.yview)
 
 listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
