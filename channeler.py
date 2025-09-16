@@ -204,6 +204,7 @@ def open_file():
     global current_file, current_pointer_offset, current_table_name, cached_names, scripts_data
 
     filename = filedialog.askopenfilename(title="Open Binary File", filetypes=[("Binary files", "*.*")])
+    current_file = filename
     if not filename:
         return
 
@@ -217,6 +218,7 @@ def open_file():
 
     if choice.startswith("name"):
         pointer_offset = POINTER_TABLES["Card Names"]
+        current_pointer_offset = POINTER_TABLES["Card Names"]
         current_table_name = "Card Names"
         cached_names = None
         strings = read_strings(filename, pointer_offset)
@@ -224,6 +226,7 @@ def open_file():
 
     elif choice.startswith("desc"):
         pointer_offset = POINTER_TABLES["Card Descriptions"]
+        current_pointer_offset = POINTER_TABLES["Card Descriptions"]
         current_table_name = "Card Descriptions"
         cached_names = read_strings(filename, POINTER_TABLES["Card Names"])
         strings = read_strings(filename, pointer_offset)
@@ -302,6 +305,9 @@ def on_left_select(event):
 
 def edit_selected():
     global current_file, current_pointer_offset
+    if current_file is None or current_table_name is None:
+        messagebox.showwarning("No file", "Open a file first.")
+        return
     if current_table_name == "Scripts":
         messagebox.showinfo("Scripts mode", "Editing scripts is not supported here.")
         return
